@@ -7,12 +7,17 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ✅ SIMPLE & SAFE CORS (Render + Netlify)
-app.use(cors({
-  origin: "https://authmernn.netlify.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-}));
+// ✅ CORS for Local + Netlify
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",        // local development
+      "https://authmernn.netlify.app" // production (Netlify)
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use(express.json());
 
