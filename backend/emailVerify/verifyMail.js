@@ -21,9 +21,9 @@ export const verifyMail = async (token, email) => {
 
     // 2️⃣ Compile template
     const template = handlebars.compile(emailTemplateSource);
-   const htmlToSend = template({
-  verifyUrl: `${process.env.FRONTEND_URL}/verify/${encodeURIComponent(token)}`
-});
+    const htmlToSend = template({
+      verifyUrl: `${process.env.FRONTEND_URL}/verify/${encodeURIComponent(token)}`
+    });
 
 
     // 3️⃣ SendGrid message

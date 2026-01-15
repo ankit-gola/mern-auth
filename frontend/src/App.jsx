@@ -14,43 +14,53 @@ import AuthSuccess from './pages/AuthSuccess'
 
 const router = createBrowserRouter([
   {
-    path:'/',
-    element:<><Navbar/><Home/></>
+    path: '/',
+    element: (
+      <>
+        <Navbar />
+        <Home />
+      </>
+    ),
+    errorElement: (
+      <div style={{ padding: "40px", textAlign: "center" }}>
+        <h2>Page Not Found</h2>
+        <p>The page you are looking for does not exist.</p>
+      </div>
+    )
   },
   {
-    path:'/signup',
-    element:<Signup/>
+    path: '/signup',
+    element: <Signup />
   },
   {
-    path:'/verify',
-    element:<VerifyEmail/>
-  },
- {
-  path:'/verify/:token/*',
-  element:<Verify/>
-}
-,
-  {
-    path:'/login',
-    element:<Login/>
+    path: '/verify',
+    element: <VerifyEmail />
   },
   {
-    path:'/auth-success',
-    element:<AuthSuccess/>
+    path: '/verify/:token/*',
+    element: <Verify />
   },
   {
-    path:'/forgot-password',
-    element:<ForgotPassword/>
+    path: '/login',
+    element: <Login />
   },
   {
-    path:'/verify-otp/:email',
-    element:<VerifyOTP/>
+    path: '/auth-success',
+    element: <AuthSuccess />
   },
   {
-    path:'/change-password/:email',
-    element:<ChangePassword/>
+    path: '/forgot-password',
+    element: <ForgotPassword />
   },
-])
+  {
+    path: '/verify-otp/:email',
+    element: <VerifyOTP />
+  },
+  {
+    path: '/change-password/:email',
+    element: <ChangePassword />
+  }
+]);
 
 const App = () => {
   return (
