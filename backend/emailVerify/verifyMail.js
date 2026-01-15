@@ -1,12 +1,15 @@
-import nodemailer from "nodemailer";
 import "dotenv/config";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import handlebars from "handlebars";
+import sgMail from "@sendgrid/mail";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// ✅ Set SendGrid API key
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export const verifyMail = async (token, email) => {
   try {
@@ -22,32 +25,23 @@ export const verifyMail = async (token, email) => {
       token: encodeURIComponent(token),
     });
 
-    // 3️⃣ SendGrid transporter
-    const transporter = nodemailer.createTransport({
-      host: "smtp.sendgrid.net",
-      port: 587,
-      secure: false,
-      auth: {
-        user: "apikey",
-        pass: process.env.SENDGRID_API_KEY,
-      },
-    });
-
-    // 4️⃣ Mail options
-    const mailConfigurations = {
-      from: process.env.SENDGRID_FROM_EMAIL,
+    // 3️⃣ SendGrid message
+    const msg = {
       to: email,
+      from: process.env.SENDGRID_FROM_EMAIL,
       subject: "Email Verification",
       html: htmlToSend,
     };
 
-    // 5️⃣ Send mail
-    const info = await transporter.sendMail(mailConfigurations);
+    // 4️⃣ Send email
+    await sgMail.send(msg);
 
-    console.log("✅ Verification email sent");
-    console.log(info.messageId);
+    console.log("✅ Verification email sent via SendGrid");
   } catch (error) {
-    console.error("❌ Email sending failed:", error.message);
+    console.error(
+      "❌ SendGrid email error:",
+      error.response?.body || error.message
+    );
     throw error;
   }
 };
