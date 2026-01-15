@@ -7,13 +7,20 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+// ✅ CORS OPTIONS (VERY IMPORTANT)
+const corsOptions = {
+  origin: "https://mernnauthh.netlify.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 
-// 🔥 TEMPORARY: allow all origins (CORS DEBUG)
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-}));
+// ✅ Handle preflight requests
+app.options("*", cors(corsOptions));
+
+// ✅ Apply CORS middleware
+app.use(cors(corsOptions));
+
+app.use(express.json());
 
 app.use("/user", userRoute);
 
