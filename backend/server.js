@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 // ✅ SIMPLE & SAFE CORS (Render + Netlify)
 app.use(cors({
-  origin: "https://mernnauthh.netlify.app",
+  origin: "https://authmernn.netlify.app/",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
