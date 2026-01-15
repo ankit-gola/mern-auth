@@ -7,21 +7,18 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const corsOptions = {
+// ✅ SIMPLE & SAFE CORS (Render + Netlify)
+app.use(cors({
   origin: "https://mernnauthh.netlify.app",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
-};
+}));
 
-// 🔥 FIXED LINE HERE
-app.options("/*", cors(corsOptions));
-
-app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/user", userRoute);
 
-app.listen(PORT, () => {
-  connectDB();
+app.listen(PORT, async () => {
+  await connectDB();
   console.log(`Server is listening at port ${PORT}`);
 });
