@@ -41,7 +41,7 @@ const Signup = () => {
         console.log(formData);
         try {
             setIsLoading(true)
-            const res = await axios.post(`https://mern-auth-sezn.onrender.com/user/register`, formData,{
+            const res = await axios.post(`https://mern-auth-fcua.onrender.com/user/register`, formData,{
                 headers:{
                     "Content-Type":"application/json"
                 }

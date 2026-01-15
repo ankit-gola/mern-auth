@@ -21,7 +21,7 @@ const Navbar = () => {
 
     const logoutHandler = async()=>{
         try {
-            const res = await axios.post(`https://mern-auth-sezn.onrender.com/user/logout`,{},{
+            const res = await axios.post(`https://mern-auth-fcua.onrender.com/user/logout`,{},{
                 headers:{
                     Authorization:`Bearer ${accessToken}`
                 }

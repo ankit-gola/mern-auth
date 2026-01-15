@@ -21,7 +21,7 @@ const ForgotPassword = () => {
         e.preventDefault()
         try {
             setIsLoading(true)
-            const res = await axios.post(`https://mern-auth-sezn.onrender.com/user/forgot-password`, {
+            const res = await axios.post(`https://mern-auth-fcua.onrender.com/user/forgot-password`, {
                 email
             });
             if(res.data.success){

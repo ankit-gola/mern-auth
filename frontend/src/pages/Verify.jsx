@@ -12,7 +12,7 @@ const Verify = () => {
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        await axios.get(`https://mern-auth-sezn.onrender.com/user/verify/${token}`);
+        await axios.get(`https://mern-auth-fcua.onrender.com/user/verify/${token}`);
         setStatus("success");
 
         // ✅ AUTO REDIRECT after 2 seconds

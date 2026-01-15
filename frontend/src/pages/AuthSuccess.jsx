@@ -17,7 +17,7 @@ const AuthSuccess = () => {
             if (accessToken) {
                 localStorage.setItem("accessToken", accessToken)
                 try {
-                    const res = await axios.get("https://mern-auth-sezn.onrender.com/auth/me", {
+                    const res = await axios.get("https://mern-auth-fcua.onrender.com/auth/me", {
                         headers: {
                             Authorization: `Bearer ${accessToken}`
                         }

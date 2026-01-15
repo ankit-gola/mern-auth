@@ -37,7 +37,7 @@ const VerifyOTP = () => {
 
     try {
       setIsLoading(true)
-      const res = await axios.post(`https://mern-auth-sezn.onrender.com/user/verify-otp/${email}`, {
+      const res = await axios.post(`https://mern-auth-fcua.onrender.com/user/verify-otp/${email}`, {
         otp: finalOtp,
       })
       setSuccessMessage(res.data.message)
